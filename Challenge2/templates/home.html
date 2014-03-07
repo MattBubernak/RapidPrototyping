@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Prettified Page</title>
+
+    <!-- Bootstrap -->
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+
+
+</head>
+  <body>
+  
+<div class="container">
+
+    <ol id="navigation" class = "breadcrumb">
+	
+    {% for item in navigation %}
+        <li><a href="{{ item.href }}" >{{ item.caption }}</a></li>
+    {% endfor %}
+    </ol>
+
+	<div class="jumbotron">
+	<h1>My Webpage</h1>
+	<p>{{a_variable}}</p>
+	</div>
+
+
+
+  </div> <!-- /container -->
+  </body>
+</html>

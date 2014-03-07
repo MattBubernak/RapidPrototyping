@@ -1,0 +1,165 @@
+g<!DOCTYPE html>
+
+    <!-- Bootstrap -->
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+
+
+<html >
+<head>
+  <title>Challenge 1</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+<script>
+    $(document).ready(function(){
+    $("#submitForm").click(function()
+    {
+		var title = $("#name").val();
+		var author = $("#subject").val();
+		var genre = $("#email").val();
+		var renterID = $("#message").val(); 
+		
+		var nud = {
+		 title : title ,
+		 author : author ,
+		 genre : genre ,
+		 renterID : renterID 
+		}
+		
+		
+		
+		$.ajax({
+		  type: "POST",
+		  url: "/addToDB",
+		  data: JSON.stringify(nud,null,'\t'),
+		  contentType: 'application/json;charset=UTF-8',
+		  success: function(result) 
+		  {
+			console.log(result);
+		  }
+		  });  
+      $("#contactAlert").slideDown();
+	  
+
+    });
+})  
+    
+  	$( document ).ajaxSuccess(function( event, request, settings ) {
+ 		console.log("Succesfully sent data to server")
+	});
+
+
+
+$(document).ready(function(){
+    $('#signature').mouseenter(function(){
+       $('#sig1').fadeIn(500); 
+       $('#sig2').fadeOut(500);    
+    });
+    });
+$(document).ready(function(){
+    $('#signature').mouseleave(function(){
+       $('#sig1').fadeOut(500); 
+       $('#sig2').fadeIn(500);    
+    });
+    });
+
+$().ready(function() {
+
+    $(document.documentElement).keyup(function (event) 
+    {
+      var direction = null;
+      // handle cursor keys
+      if (event.keyCode == 37) 
+      {
+        // go left
+        document.location.href = "MattBubernakResume.html";
+      } 
+      else if (event.keyCode == 39) 
+      {
+        // go right
+        //document.location.href = "MattBubernakProjects.html";
+      }
+
+    });
+});
+
+
+</script>
+
+
+
+
+<body >
+   <div class="container">
+     <div class="jumbotron" >
+        <div class="row">
+          
+          <div class="col-md-10">
+           <h1 style="font-family:'Segoe UI'; text-align:right ">Bird Bucket Public Library</h1>
+           <p class="lead" style="font-family:'Segoe UI' ; text-align:right "><i>Post</i></p>
+          </div>
+        </div>
+
+ </div>
+           <div class="btn-group btn-group-justified">
+        <div class="btn-group">
+         <button type="button" class="btn btn-primary" onclick="location.href='checkout'">Post</button>
+        </div>
+        <div class="btn-group">
+         <button type="button" class="btn btn-default" onclick="location.href='inquire'">Get</button>
+        </div>
+      </div>
+     </div>
+     <br>
+
+   <div class="alert alert-success" id = "contactAlert" style= "display:none">Your book has been checked out!</div>
+
+   <div class="row">
+
+ 
+
+    
+   
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h1>Checkout Book </h1>
+        </div>
+        <div class="panel-body">
+
+          <form role="form">
+            <div class="form-horizontal" class="form-group" style="width:100%">
+              <label for="name has-success">Title</label>
+              <input class="form-control input-md" type="text" class="form-control" id="name" placeholder="Enter a title">
+            </div>
+            <div class="form-horizontal" class="form-group" style="width:100%">
+              <label for="email">Author</label>
+              <input class="form-control input-md" type="text" class="form-control" id="subject" placeholder="Enter an author">
+            </div>
+             <div class="form-horizontal" class="form-group" style="width:100%">
+              <label for="email">Genre</label>
+              <input class="form-control input-md" type="email" class="form-control" id="email" placeholder="Enter a genre">
+            </div>
+               <div class="form-horizontal" class="form-group" style="width:100%">
+              <label for="email">Renter ID </label>
+              <input class="form-control input-md" type="email" class="form-control" id="message" placeholder="Enter a renter ID">
+            </div>
+            <div>
+             <button type="button" input type "submit" class="btn btn-default" id="submitForm">Submit</button>
+            </div>
+          </form>
+         </div>
+       </div>
+     </div>
+
+
+
+
+
+
+</body>
+

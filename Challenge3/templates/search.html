@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Slow Loris Dating </title>
+
+    <!-- Bootstrap -->
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script type="text/javascript" src="js/bootstrap/bootstrap-dropdown.js"></script>
+
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+    <script>
+		$(document).ready(function() {
+			$("#submit").click(function()
+			{
+				newString = "search";
+				newString = newString + "?gender=";
+				newString = newString + document.getElementById('param1').value;
+				if (document.getElementById('param2').value)
+				{
+					newString = newString + "&age=";
+					newString = newString + document.getElementById('param2').value;
+			    }
+				//alert(newString);
+				//alert( $("#param2").value)
+			//	alert(document.getElementById('param2').value);
+				document.location.href = newString;
+			});
+		});
+
+
+
+    
+    </script>
+
+<script>
+     $(document).ready(function(){
+        $('.dropdown-toggle').dropdown()
+    });
+</script>  
+  
+  
+  </head>
+  <body>
+  <nav class="navbar navbar-default" role="navigation">
+  <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Slow Love: Loris Dating</a>
+    </div>
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="?page=signup">Search</a></li>
+
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div>
+  </div>
+  </nav>
+<div class="container">
+
+	<form class="navbar-form navbar-left" role="search">
+	  <div class="form-group">
+		<input id = "param2" type="text" class="form-control" placeholder="Provide an Age">
+	  </div>
+	   <select class="Gender" id = "param1">
+		<option>Male</option>
+		<option>Female</option>
+	  </select>
+	</form>
+	 
+   <button class="btn btn-lg btn-primary btn-block"  id = "submit" style="width: 200px;">Search</button>
+
+	
+    <h1>Search Results </h1>
+    {% if search == "true" %}
+    <h3>Search Specifications: Gender : {{gender}} , Age: {{age}}</h3>
+	{% endif %}
+	<ul id="navigation">
+	{% for item in data %}
+		<h2>{{item.name}}</h2>
+        <a href="view/{{item.name}}">View More Info</a>
+      
+        <hr>
+    {% endfor %}
+    </ul>
+    
+    
+
+
+
+  </div> <!-- /container -->
+  </body>
+</html>
